@@ -17,12 +17,23 @@ import {
   getModelsForMakeType,
   getModelsForMakeYearType,
 } from "./Utilities/API";
+import { useDispatch, useSelector } from "react-redux";
+
+import { CarsState } from "./reducer";
 
 const App = () => {
+  const cars = useSelector<CarsState, CarsState["cars"]>((state) => state.cars);
+
+  const dispatch = useDispatch();
+
+  const addCars = (cars: CarModelType[]) => {
+    dispatch({ type: "ADD_CARS", payload: cars });
+  };
+
   const [make, setMake] = useState("");
   const [year, setYear] = useState("");
   const [type, setType] = useState("");
-  const [data, setData] = useState<CarModelType[]>([]);
+  // const [data, setData] = useState<CarModelType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const search = (event: FormEvent<HTMLFormElement>) => {
@@ -41,28 +52,28 @@ const App = () => {
       setIsLoading(true);
       (async () => {
         const response = await getModelsForMakeYearType(make, year, type);
-        setData(response);
+        addCars(response);
         setIsLoading(false);
       })();
     } else if (make && year) {
       setIsLoading(true);
       (async () => {
         const response = await getModelsForMakeYear(make, year);
-        setData(response);
+        addCars(response);
         setIsLoading(false);
       })();
     } else if (make && type) {
       setIsLoading(true);
       (async () => {
         const response = await getModelsForMakeType(make, type);
-        setData(response);
+        addCars(response);
         setIsLoading(false);
       })();
     } else if (make) {
       setIsLoading(true);
       (async () => {
         const response = await getModelsForMake(make);
-        setData(response);
+        addCars(response);
         setIsLoading(false);
       })();
     }
@@ -78,7 +89,7 @@ const App = () => {
         <LinearProgress />
       ) : (
         <Grid container spacing={3}>
-          {data?.map((car: CarModelType, index: number) => (
+          {cars?.map((car: CarModelType, index: number) => (
             <Grid item key={index} xs={12} sm={4}>
               <Car car={car} />{" "}
             </Grid>
