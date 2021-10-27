@@ -15,14 +15,24 @@ export type CarModelType = {
   Model_Name: string;
 };
 
-const getModelsForMake = async (make: string): Promise<CarModelType> =>
-  await (
+const getModelsForMake = async (make: string): Promise<CarModelType[]> => {
+  const data = await (
     await fetch(
       `https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMake/${make}?format=json`
     )
   ).json();
+  return data.Results;
+};
 
 const App = () => {
+  let make = "honda";
+
+  const { data, isLoading, error } = useQuery<CarModelType[]>(
+    ["cars", make],
+    () => getModelsForMake(make)
+  );
+
+  console.log(data);
   return <div className="App">Start</div>;
 };
 
