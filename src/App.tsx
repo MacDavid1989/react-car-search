@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { useQuery } from "react-query";
+import { FormEvent, useEffect, useState } from "react";
 
 // Components
 import Car from "./Car/Car";
-import { Drawer, LinearProgress, Grid } from "@material-ui/core";
+// import Search from "./Search/Search";
+import { LinearProgress, Grid } from "@material-ui/core";
 
 // Styles
 import { Wrapper } from "./App.styles";
@@ -65,28 +65,83 @@ const getModelsForMakeYearType = async (
 };
 
 const App = () => {
-  let make = "honda";
-  let type = "car";
-  let year = "2015";
+  const [make, setMake] = useState("");
+  const [year, setYear] = useState("");
+  const [type, setType] = useState("");
+  const [data, setData] = useState<CarModelType[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const { data, isLoading, error } = useQuery<CarModelType[]>("cars", () =>
-    getModelsForMakeYearType(make, year, type)
-  );
+  const search = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setData([]);
+    const form = event.target as HTMLFormElement;
+    const inputMake = form.querySelector("#make") as HTMLInputElement;
+    const inputYear = form.querySelector("#year") as HTMLInputElement;
+    const inputType = form.querySelector("#type") as HTMLInputElement;
+    setIsLoading(true);
+    setMake(inputMake.value);
+    setYear(inputYear.value);
+    setType(inputType.value);
+  };
 
-  console.log(data);
+  useEffect(() => {
+    if (make && year && type) {
+      (async () => {
+        const response = await getModelsForMakeYearType(make, year, type);
+        setData(response);
+        setIsLoading(false);
+      })();
+    } else if (make && year) {
+      (async () => {
+        const response = await getModelsForMakeYear(make, year);
+        setData(response);
+        setIsLoading(false);
+      })();
+    } else if (make && type) {
+      (async () => {
+        const response = await getModelsForMakeType(make, type);
+        setData(response);
+        setIsLoading(false);
+      })();
+    } else if (make) {
+      (async () => {
+        const response = await getModelsForMake(make);
+        setData(response);
+        setIsLoading(false);
+      })();
+    }
+  }, [make, year, type]);
 
-  if (isLoading) return <LinearProgress />;
-  if (error) return <div> something went wrong</div>;
+  // if (isLoading) return <LinearProgress />;
+  // if (error) return <div> something went wrong</div>;
 
   return (
     <Wrapper>
-      <Grid container spacing={3}>
-        {data?.map((car: CarModelType, index: number) => (
-          <Grid item key={index} xs={12} sm={4}>
-            <Car car={car} />{" "}
-          </Grid>
-        ))}
+      <h1>Car Search App</h1>
+      <Grid container>
+        <form onSubmit={(event) => search(event)}>
+          <input
+            id="make"
+            type="text"
+            placeholder="Enter vehicle make..."
+            required
+          />
+          <input id="year" type="text" placeholder="Enter vehicle year..." />
+          <input id="type" type="text" placeholder="Enter vehicle type..." />
+          <button>Search</button>
+        </form>
       </Grid>
+      {isLoading ? (
+        <LinearProgress />
+      ) : (
+        <Grid container spacing={3}>
+          {data?.map((car: CarModelType, index: number) => (
+            <Grid item key={index} xs={12} sm={4}>
+              <Car car={car} />{" "}
+            </Grid>
+          ))}
+        </Grid>
+      )}
     </Wrapper>
   );
 };
