@@ -7,8 +7,8 @@ import { LinearProgress, Grid } from "@material-ui/core";
 // Styles
 import { Wrapper } from "./Styles/App.styles";
 
-// Types
-import { CarModelType } from "./Types";
+// Interfaces
+import { CarModelType } from "./Interfaces";
 
 // Api
 import {
@@ -17,9 +17,10 @@ import {
   getModelsForMakeType,
   getModelsForMakeYearType,
 } from "./Utilities/API";
-import { useDispatch, useSelector } from "react-redux";
 
-import { CarsState } from "./reducer";
+// Store
+import { useDispatch, useSelector } from "react-redux";
+import { CarsState } from "./Store/reducers/carsReducer";
 
 const App = () => {
   const cars = useSelector<CarsState, CarsState["cars"]>((state) => state.cars);

@@ -1,6 +1,6 @@
 import { Wrapper } from "../../Styles/ComponentStyles/Search.styles";
 
-import { SearchPropsType } from "../../Types";
+import { SearchPropsType } from "../../Interfaces";
 
 const Search: React.FC<SearchPropsType> = ({ handleSearch }) => (
   <Wrapper>

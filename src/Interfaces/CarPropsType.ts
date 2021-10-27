@@ -1,5 +1,5 @@
 import { CarModelType } from "./CarModelType";
 
-export type CarPropsType = {
+export interface CarPropsType {
   car: CarModelType;
-};
+}

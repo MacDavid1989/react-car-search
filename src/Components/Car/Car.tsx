@@ -1,5 +1,5 @@
 // Types
-import { CarPropsType } from "../../Types";
+import { CarPropsType } from "../../Interfaces";
 
 // Styles
 import { Wrapper } from "../../Styles/ComponentStyles/Car.styles";

@@ -1,4 +1,4 @@
-import { CarModelType } from "./Types";
+import { CarModelType } from "../../Interfaces";
 
 export interface CarsState {
   cars: CarModelType[];
