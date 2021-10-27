@@ -13,6 +13,8 @@ export type CarModelType = {
   Make_Name: string;
   Model_ID: number;
   Model_Name: string;
+  VehicleTypeId?: number;
+  VehicleTypeName?: string;
 };
 
 const getModelsForMake = async (make: string): Promise<CarModelType[]> => {
@@ -63,13 +65,17 @@ const getModelsForMakeYearType = async (
 
 const App = () => {
   let make = "honda";
+  let type = "car";
+  let year = "2015";
 
-  const { data, isLoading, error } = useQuery<CarModelType[]>(
-    ["cars", make],
-    () => getModelsForMake(make)
+  const { data, isLoading, error } = useQuery<CarModelType[]>("cars", () =>
+    getModelsForMakeYearType(make, year, type)
   );
 
   console.log(data);
+
+  if (isLoading) return <LinearProgress />;
+  if (error) return <div> something went wrong</div>;
 
   return <div className="App">Start</div>;
 };
