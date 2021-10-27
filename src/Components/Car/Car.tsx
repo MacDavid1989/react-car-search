@@ -1,14 +1,10 @@
 // Types
-import { CarModelType } from "../../Types/CarModelType";
+import { CarPropsType } from "../../Types";
 
 // Styles
 import { Wrapper } from "../../Styles/ComponentStyles/Car.styles";
 
-type Props = {
-  car: CarModelType;
-};
-
-const Car: React.FC<Props> = ({ car }) => (
+const Car: React.FC<CarPropsType> = ({ car }) => (
   <Wrapper>
     {/* image goes here */}
     <div>

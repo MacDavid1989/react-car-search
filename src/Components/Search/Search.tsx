@@ -1,10 +1,8 @@
 import { Wrapper } from "../../Styles/ComponentStyles/Search.styles";
 
-type Props = {
-  handleSearch: Function;
-};
+import { SearchPropsType } from "../../Types";
 
-const Search: React.FC<Props> = ({ handleSearch }) => (
+const Search: React.FC<SearchPropsType> = ({ handleSearch }) => (
   <Wrapper>
     <form onSubmit={(event) => handleSearch(event)}>
       <input

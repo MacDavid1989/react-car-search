@@ -1,22 +1,22 @@
 import { FormEvent, useEffect, useState } from "react";
 
 // Components
-import Car from "./Components/Car/Car";
-import Search from "./Components/Search/Search";
-// import Search from "./Search/Search";
+import { Car, Search } from "./Components";
 import { LinearProgress, Grid } from "@material-ui/core";
 
 // Styles
 import { Wrapper } from "./Styles/App.styles";
 
 // Types
-import { CarModelType } from "./Types/CarModelType";
+import { CarModelType } from "./Types";
 
 // Api
-import { getModelsForMake } from "./Utilities/API/getModelsForMake";
-import { getModelsForMakeYear } from "./Utilities/API/getModelsForMakeYear";
-import { getModelsForMakeType } from "./Utilities/API/getModelsForMakeType";
-import { getModelsForMakeYearType } from "./Utilities/API/getModelsForMakeYearType";
+import {
+  getModelsForMake,
+  getModelsForMakeYear,
+  getModelsForMakeType,
+  getModelsForMakeYearType,
+} from "./Utilities/API";
 
 const App = () => {
   const [make, setMake] = useState("");
