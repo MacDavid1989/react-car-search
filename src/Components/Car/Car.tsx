@@ -1,8 +1,8 @@
 // Types
-import { CarModelType } from "../App";
+import { CarModelType } from "../../Types/CarModelType";
 
 // Styles
-import { Wrapper } from "./Car.styles";
+import { Wrapper } from "../../Styles/ComponentStyles/Car.styles";
 
 type Props = {
   car: CarModelType;

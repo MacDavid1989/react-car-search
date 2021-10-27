@@ -1,22 +1,15 @@
 import { FormEvent, useEffect, useState } from "react";
 
 // Components
-import Car from "./Car/Car";
+import Car from "./Components/Car/Car";
 // import Search from "./Search/Search";
 import { LinearProgress, Grid } from "@material-ui/core";
 
 // Styles
-import { Wrapper } from "./App.styles";
+import { Wrapper } from "./Styles/App.styles";
 
 // Types
-export type CarModelType = {
-  Make_ID: number;
-  Make_Name: string;
-  Model_ID: number;
-  Model_Name: string;
-  VehicleTypeId?: number;
-  VehicleTypeName?: string;
-};
+import { CarModelType } from "./Types/CarModelType";
 
 const getModelsForMake = async (make: string): Promise<CarModelType[]> => {
   const data = await (
