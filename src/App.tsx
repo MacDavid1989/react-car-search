@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 // Components
 import { Car, Search } from "./Components";
@@ -21,82 +21,65 @@ import {
 // Store
 import { useDispatch, useSelector } from "react-redux";
 import { CarsState } from "./Store/reducers/carsReducer";
+import { MakeState } from "./Store/reducers/makeReducer";
+import { YearState } from "./Store/reducers/yearReducer";
+import { TypeState } from "./Store/reducers/typeReducer";
 
 const App = () => {
   const cars = useSelector<CarsState, CarsState["cars"]>((state) => state.cars);
+  const make = useSelector<MakeState, MakeState["make"]>((state) => state.make);
+  const year = useSelector<YearState, YearState["year"]>((state) => state.year);
+  const type = useSelector<TypeState, TypeState["type"]>((state) => state.type);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();
 
-  const addCars = (cars: CarModelType[]) => {
-    dispatch({ type: "ADD_CARS", payload: cars });
-  };
-
-  const [make, setMake] = useState("");
-  const [year, setYear] = useState("");
-  const [type, setType] = useState("");
-  // const [data, setData] = useState<CarModelType[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const search = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const form = event.target as HTMLFormElement;
-    const inputMake = form.querySelector("#make") as HTMLInputElement;
-    const inputYear = form.querySelector("#year") as HTMLInputElement;
-    const inputType = form.querySelector("#type") as HTMLInputElement;
-    setMake(inputMake.value);
-    setYear(inputYear.value);
-    setType(inputType.value);
-  };
-
   useEffect(() => {
+    const addCars = (cars: CarModelType[]) => {
+      dispatch({ type: "ADD_CARS", payload: cars });
+    };
+
     if (make && year && type) {
-      setIsLoading(true);
       (async () => {
         const response = await getModelsForMakeYearType(make, year, type);
         addCars(response);
-        setIsLoading(false);
       })();
     } else if (make && year) {
-      setIsLoading(true);
       (async () => {
         const response = await getModelsForMakeYear(make, year);
         addCars(response);
-        setIsLoading(false);
       })();
     } else if (make && type) {
-      setIsLoading(true);
       (async () => {
         const response = await getModelsForMakeType(make, type);
         addCars(response);
-        setIsLoading(false);
       })();
     } else if (make) {
-      setIsLoading(true);
       (async () => {
         const response = await getModelsForMake(make);
         addCars(response);
-        setIsLoading(false);
       })();
     }
-  }, [make, year, type]);
+  });
 
   return (
     <Wrapper>
       <h1>Car Search App</h1>
       <Grid container>
-        <Search handleSearch={search} />
+        <Search />
       </Grid>
-      {isLoading ? (
+      {/* {isLoading ? (
         <LinearProgress />
-      ) : (
-        <Grid container spacing={3}>
-          {cars?.map((car: CarModelType, index: number) => (
-            <Grid item key={index} xs={12} sm={4}>
-              <Car car={car} />{" "}
-            </Grid>
-          ))}
-        </Grid>
-      )}
+      ) : ( */}
+      <Grid container spacing={3}>
+        {cars?.map((car: CarModelType, index: number) => (
+          <Grid item key={index} xs={12} sm={4}>
+            <Car car={car} />{" "}
+          </Grid>
+        ))}
+      </Grid>
+      {/* )} */}
     </Wrapper>
   );
 };

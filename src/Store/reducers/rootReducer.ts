@@ -4,7 +4,7 @@ import { makeReducer } from "./makeReducer";
 import { yearReducer } from "./yearReducer";
 import { typeReducer } from "./typeReducer";
 
-export default combineReducers({
+export const rootReducer = combineReducers({
   carsReducer,
   makeReducer,
   yearReducer,
