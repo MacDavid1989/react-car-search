@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useQuery } from "react-query";
 
 // Components
+import Car from "./Car/Car";
 import { Drawer, LinearProgress, Grid } from "@material-ui/core";
 
 // Styles
@@ -77,7 +78,17 @@ const App = () => {
   if (isLoading) return <LinearProgress />;
   if (error) return <div> something went wrong</div>;
 
-  return <div className="App">Start</div>;
+  return (
+    <Wrapper>
+      <Grid container spacing={3}>
+        {data?.map((car: CarModelType, index: number) => (
+          <Grid item key={index} xs={12} sm={4}>
+            <Car car={car} />{" "}
+          </Grid>
+        ))}
+      </Grid>
+    </Wrapper>
+  );
 };
 
 export default App;

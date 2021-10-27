@@ -10,6 +10,7 @@ type Props = {
 
 const Car: React.FC<Props> = ({ car }) => (
   <Wrapper>
+    {/* image goes here */}
     <div>
       <h3>{car.Make_Name}</h3>
       <p>{car.Model_Name}</p>
