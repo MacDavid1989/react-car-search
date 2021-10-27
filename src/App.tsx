@@ -12,51 +12,11 @@ import { Wrapper } from "./Styles/App.styles";
 // Types
 import { CarModelType } from "./Types/CarModelType";
 
-const getModelsForMake = async (make: string): Promise<CarModelType[]> => {
-  const data = await (
-    await fetch(
-      `https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMake/${make}?format=json`
-    )
-  ).json();
-  return data.Results;
-};
-
-const getModelsForMakeYear = async (
-  make: string,
-  year: string
-): Promise<CarModelType[]> => {
-  const data = await (
-    await fetch(
-      `https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/${make}/modelyear/${year}?format=json`
-    )
-  ).json();
-  return data.Results;
-};
-
-const getModelsForMakeType = async (
-  make: string,
-  type: string
-): Promise<CarModelType[]> => {
-  const data = await (
-    await fetch(
-      `https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/${make}/vehicletype/${type}?format=json`
-    )
-  ).json();
-  return data.Results;
-};
-
-const getModelsForMakeYearType = async (
-  make: string,
-  year: string,
-  type: string
-): Promise<CarModelType[]> => {
-  const data = await (
-    await fetch(
-      `https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/${make}/modelyear/${year}/vehicletype/${type}?format=json`
-    )
-  ).json();
-  return data.Results;
-};
+// Api
+import { getModelsForMake } from "./Utilities/API/getModelsForMake";
+import { getModelsForMakeYear } from "./Utilities/API/getModelsForMakeYear";
+import { getModelsForMakeType } from "./Utilities/API/getModelsForMakeType";
+import { getModelsForMakeYearType } from "./Utilities/API/getModelsForMakeYearType";
 
 const App = () => {
   const [make, setMake] = useState("");
