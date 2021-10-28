@@ -1,4 +1,8 @@
-# Getting Started with Create React App
+# React Car Search App
+
+The project is deployed on netlify an can be viewed here: https://react-car-search-app.netlify.app/
+
+If viewing the project form a local server, download the files and run npm i before starting
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
