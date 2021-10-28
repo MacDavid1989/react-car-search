@@ -7,7 +7,6 @@ import {
   getModelsForMakeYear,
   getModelsForMakeType,
   getModelsForMakeYearType,
-  getAllMakes,
 } from "../API";
 
 export const getCarData = async (
@@ -33,8 +32,6 @@ export const getCarData = async (
     cars = response;
     return cars;
   } else {
-    const response = await getAllMakes();
-    cars = response;
-    return cars;
+    return [];
   }
 };
