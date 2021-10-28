@@ -13,9 +13,9 @@ const Search: React.FC = () => {
     const inputMake = form.querySelector("#make") as HTMLInputElement;
     const inputYear = form.querySelector("#year") as HTMLInputElement;
     const inputType = form.querySelector("#type") as HTMLInputElement;
-    inputMake.value && dispatch({ type: "ADD_MAKE", payload: inputMake.value });
-    inputYear.value && dispatch({ type: "ADD_YEAR", payload: inputYear.value });
-    inputType.value && dispatch({ type: "ADD_TYPE", payload: inputType.value });
+    dispatch({ type: "ADD_MAKE", payload: inputMake.value });
+    dispatch({ type: "ADD_YEAR", payload: inputYear.value });
+    dispatch({ type: "ADD_TYPE", payload: inputType.value });
   };
 
   return (
