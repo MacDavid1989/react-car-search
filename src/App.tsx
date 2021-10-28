@@ -55,11 +55,13 @@ const App = () => {
           {cars.length ? (
             cars.map((car: CarModelType, index: number) => (
               <Grid item key={index} xs={12} sm={4}>
-                <Car car={car} />{" "}
+                <Car car={car} />
               </Grid>
             ))
           ) : (
-            <></>
+            <Grid item>
+              <p>No Vehicle Data</p>
+            </Grid>
           )}
         </Grid>
       )}
