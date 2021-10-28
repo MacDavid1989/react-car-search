@@ -40,9 +40,21 @@ const App = () => {
     (async () => {
       isLoading(true);
       const response = await getCarData(make, year, type);
-      const photos = await getCarPhotos(response.length);
-      response.map((car, index) => (car.image = photos[index].urls.regular));
-      console.log(response);
+      const photos = await getCarPhotos(make, response.length);
+      let iterator: number = 0;
+      response.map((car, index) => {
+        if ((response.length = photos.length)) {
+          car.image = photos[index].urls.regular;
+        } else {
+          car.image = photos[iterator].urls.regular;
+          if (iterator < photos.length) {
+            iterator++;
+          } else {
+            iterator = 0;
+          }
+        }
+        return car;
+      });
       addCars(response);
       isLoading(false);
     })();
