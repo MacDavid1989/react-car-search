@@ -8,7 +8,7 @@ import { State } from "../../Store/reducers/rootReducer";
 import { Wrapper } from "../../Styles/ComponentStyles/BackToTop.styles";
 
 const BackToTop: React.FC = () => {
-  const showButton = useSelector((state: State) => state.loading);
+  const showButton = useSelector((state: State) => state.backToTop);
 
   const dispatch = useDispatch();
 
