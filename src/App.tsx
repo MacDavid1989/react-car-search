@@ -17,6 +17,7 @@ import { getCarData } from "./Utilities/Methods/getCarData";
 
 // Api
 import { getCarPhotos } from "./Utilities/API/Unsplash/getCarPhotos";
+import { carImageMap } from "./Utilities/Methods/carImageMap";
 
 const App = () => {
   // State
@@ -41,21 +42,8 @@ const App = () => {
       isLoading(true);
       const response = await getCarData(make, year, type);
       const photos = await getCarPhotos(make, response.length);
-      let iterator: number = 0;
-      response.map((car, index) => {
-        if ((response.length = photos.length)) {
-          car.image = photos[index].urls.regular;
-        } else {
-          car.image = photos[iterator].urls.regular;
-          if (iterator < photos.length) {
-            iterator++;
-          } else {
-            iterator = 0;
-          }
-        }
-        return car;
-      });
-      addCars(response);
+      const alteredResponse = carImageMap(response, photos);
+      addCars(alteredResponse);
       isLoading(false);
     })();
   }, [make, year, type, dispatch]);
