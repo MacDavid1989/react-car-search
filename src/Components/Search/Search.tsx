@@ -4,6 +4,10 @@ import { FormEvent } from "react";
 // Styles
 import { Wrapper } from "../../Styles/ComponentStyles/Search.styles";
 
+// Components
+import { TextField, IconButton } from "@material-ui/core";
+import { DirectionsCar } from "@material-ui/icons";
+
 const Search: React.FC = () => {
   const dispatch = useDispatch();
 
@@ -24,15 +28,28 @@ const Search: React.FC = () => {
   return (
     <Wrapper>
       <form onSubmit={(event) => handleSearch(event)}>
-        <input
+        <TextField
+          size="small"
           id="make"
-          type="text"
-          placeholder="Enter vehicle make..."
+          label="Vehicle Make"
+          variant="filled"
           required
         />
-        <input id="year" type="text" placeholder="Enter vehicle year..." />
-        <input id="type" type="text" placeholder="Enter vehicle type..." />
-        <button>Search</button>
+        <TextField
+          size="small"
+          id="year"
+          label="Vehicle Year"
+          variant="filled"
+        />
+        <TextField
+          size="small"
+          id="type"
+          label="Vehicle Type"
+          variant="filled"
+        />
+        <IconButton type="submit" aria-label="search-for-cars">
+          <DirectionsCar />
+        </IconButton>
       </form>
     </Wrapper>
   );

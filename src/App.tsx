@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // Components
-import { Car, Search } from "./Components";
-import { LinearProgress, Grid } from "@material-ui/core";
+import { Car, Search, Loading } from "./Components";
+import { Grid } from "@material-ui/core";
 
 // Styles
 import { Wrapper } from "./Styles/App.styles";
@@ -47,17 +47,19 @@ const App = () => {
       <h1>Car Search App</h1>
       <Search />
       {loading ? (
-        <LinearProgress />
+        <Loading />
       ) : cars.length ? (
         <>
-        <p>Showing results for {make} {year} {type}</p>
-        <Grid container spacing={3}>
-          {cars.map((car: CarModelType, index: number) => (
-            <Grid item key={index} xs={12} sm={4}>
-              <Car car={car} />
-            </Grid>
-          ))}
-        </Grid>
+          <p>
+            Showing results for {make} {year} {type}
+          </p>
+          <Grid container spacing={3}>
+            {cars.map((car: CarModelType, index: number) => (
+              <Grid item key={index} xs={12} sm={4}>
+                <Car car={car} />
+              </Grid>
+            ))}
+          </Grid>
         </>
       ) : (
         <p>No Vehicle Data</p>
