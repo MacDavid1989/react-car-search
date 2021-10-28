@@ -25,6 +25,10 @@ export const Wrapper = styled.div`
     color: #fff;
   }
 
+  .MuiOutlinedInput-notchedOutline {
+    border-color: #fff;
+  }
+
   .MuiFormControl-root {
     margin: 5px;
   }
