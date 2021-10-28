@@ -1,4 +1,6 @@
 import { combineReducers } from "redux";
+
+// Reducers
 import { carsReducer } from "./carsReducer";
 import { makeReducer } from "./makeReducer";
 import { yearReducer } from "./yearReducer";

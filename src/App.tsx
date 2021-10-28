@@ -11,16 +11,9 @@ import { Wrapper } from "./Styles/App.styles";
 // Interfaces
 import { CarModelType } from "./Interfaces";
 
-// Api
-import {
-  getModelsForMake,
-  getModelsForMakeYear,
-  getModelsForMakeType,
-  getModelsForMakeYearType,
-} from "./Utilities/API";
-
 // Store
 import { State } from "./Store/reducers/rootReducer";
+import { getCarData } from "./Utilities/Methods/getCarData";
 
 const App = () => {
   // State
@@ -41,35 +34,12 @@ const App = () => {
       dispatch({ type: "TOGGLE_LOADING", payload: loading });
     };
 
-    if (make && year && type) {
+    (async () => {
       isLoading(true);
-      (async () => {
-        const response = await getModelsForMakeYearType(make, year, type);
-        addCars(response);
-        isLoading(false);
-      })();
-    } else if (make && year) {
-      isLoading(true);
-      (async () => {
-        const response = await getModelsForMakeYear(make, year);
-        addCars(response);
-        isLoading(false);
-      })();
-    } else if (make && type) {
-      isLoading(true);
-      (async () => {
-        const response = await getModelsForMakeType(make, type);
-        addCars(response);
-        isLoading(false);
-      })();
-    } else if (make) {
-      isLoading(true);
-      (async () => {
-        const response = await getModelsForMake(make);
-        addCars(response);
-        isLoading(false);
-      })();
-    }
+      const response = await getCarData(make, year, type);
+      addCars(response);
+      isLoading(false);
+    })();
   }, [make, year, type, dispatch]);
 
   return (

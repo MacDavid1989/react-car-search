@@ -1,3 +1,4 @@
+// Interfaces
 import { CarModelType } from "../../Interfaces";
 
 const initialState: CarModelType[] = [];

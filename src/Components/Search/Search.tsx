@@ -1,18 +1,21 @@
 import { useDispatch } from "react-redux";
-
-import { Wrapper } from "../../Styles/ComponentStyles/Search.styles";
-
 import { FormEvent } from "react";
+
+// Styles
+import { Wrapper } from "../../Styles/ComponentStyles/Search.styles";
 
 const Search: React.FC = () => {
   const dispatch = useDispatch();
 
   const handleSearch = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    // HTML Elements
     const form = event.target as HTMLFormElement;
     const inputMake = form.querySelector("#make") as HTMLInputElement;
     const inputYear = form.querySelector("#year") as HTMLInputElement;
     const inputType = form.querySelector("#type") as HTMLInputElement;
+
     dispatch({ type: "ADD_MAKE", payload: inputMake.value });
     dispatch({ type: "ADD_YEAR", payload: inputYear.value });
     dispatch({ type: "ADD_TYPE", payload: inputType.value });
