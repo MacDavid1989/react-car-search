@@ -15,6 +15,9 @@ import { CarModelType } from "./Interfaces";
 import { State } from "./Store/reducers/rootReducer";
 import { getCarData } from "./Utilities/Methods/getCarData";
 
+// Api
+import { getCarPhotos } from "./Utilities/API/Unsplash/getCarPhotos";
+
 const App = () => {
   // State
   const cars = useSelector((state: State) => state.cars);
@@ -37,6 +40,9 @@ const App = () => {
     (async () => {
       isLoading(true);
       const response = await getCarData(make, year, type);
+      const photos = await getCarPhotos(response.length);
+      response.map((car, index) => (car.image = photos[index].urls.regular));
+      console.log(response);
       addCars(response);
       isLoading(false);
     })();

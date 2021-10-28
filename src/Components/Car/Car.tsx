@@ -6,7 +6,7 @@ import { Wrapper } from "../../Styles/ComponentStyles/Car.styles";
 
 const Car: React.FC<CarPropsType> = ({ car }) => (
   <Wrapper>
-    {/* image goes here */}
+    <img src={car.image} alt={car.Make_Name} />
     <div>
       <h3>{car.Make_Name}</h3>
       <p>{car.Model_Name}</p>
