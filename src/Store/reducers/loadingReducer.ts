@@ -1,13 +1,10 @@
-const initialState = false;
+import { LoadingActions } from "../actions";
 
-type Action = {
-  type: "TOGGLE_LOADING";
-  payload?: boolean;
-};
+const initialState = false;
 
 export const loadingReducer = (
   state: boolean = initialState,
-  action: Action
+  action: LoadingActions
 ) => {
   switch (action.type) {
     case "TOGGLE_LOADING": {
