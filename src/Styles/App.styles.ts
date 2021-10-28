@@ -7,4 +7,8 @@ export const Wrapper = styled.div`
   font-family: Helvetica, Arial, sans-serif;
   padding: 20px;
   color: #fff;
+
+  span {
+    color: #95c93d;
+  }
 `;

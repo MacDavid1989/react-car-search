@@ -51,7 +51,9 @@ const App = () => {
 
   return (
     <Wrapper>
-      <h1>Car Search App</h1>
+      <h1>
+        DR<span>i</span>VE
+      </h1>
       <Search />
       {loading ? (
         <Loading />
