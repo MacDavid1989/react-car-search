@@ -1,24 +1,28 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+// Store
+import { State } from "../../Store/reducers/rootReducer";
 
 // Styles
 import { Wrapper } from "../../Styles/ComponentStyles/BackToTop.styles";
 
 const BackToTop: React.FC = () => {
-  const [showButton, setShowButton] = useState(false);
+  const showButton = useSelector((state: State) => state.loading);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
       if (window.pageYOffset > 300) {
-        setShowButton(true);
+        dispatch({ type: "TOGGLE_BACKTOTOP", payload: true });
       } else {
-        setShowButton(false);
+        dispatch({ type: "TOGGLE_BACKTOTOP", payload: false });
       }
     });
   });
 
-  const scrollToTop = () => {
-    window.scrollTo(0, 0);
-  };
+  const scrollToTop = () => window.scrollTo(0, 0);
 
   return (
     <Wrapper>
