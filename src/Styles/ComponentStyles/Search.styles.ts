@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    justify-content: center;
+    align-items: center;
   }
 
   .form-group {
@@ -39,5 +39,9 @@ export const Wrapper = styled.div`
   input:-webkit-autofill {
     -webkit-text-fill-color: #fff !important;
     border-radius: 0.5px !important;
+  }
+
+  button {
+    width: 48px;
   }
 `;
