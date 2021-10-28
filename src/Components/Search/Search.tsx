@@ -28,26 +28,29 @@ const Search: React.FC = () => {
   return (
     <Wrapper>
       <form onSubmit={(event) => handleSearch(event)}>
-        <TextField
-          size="small"
-          id="make"
-          label="Vehicle Make"
-          variant="filled"
-          required
-        />
-        <TextField
-          size="small"
-          id="year"
-          label="Vehicle Year"
-          variant="filled"
-        />
-        <TextField
-          size="small"
-          id="type"
-          label="Vehicle Type"
-          variant="filled"
-        />
-        <IconButton type="submit" aria-label="search-for-cars">
+        <div className="form-group">
+          <TextField
+            size="small"
+            id="make"
+            label="Vehicle Make"
+            variant="outlined"
+            color="primary"
+            required
+          />
+          <TextField
+            size="small"
+            id="year"
+            label="Vehicle Year"
+            variant="outlined"
+          />
+          <TextField
+            size="small"
+            id="type"
+            label="Vehicle Type"
+            variant="outlined"
+          />
+        </div>
+        <IconButton color="primary" type="submit" aria-label="search-for-cars">
           <DirectionsCar />
         </IconButton>
       </form>

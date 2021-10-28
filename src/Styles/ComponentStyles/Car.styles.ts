@@ -8,7 +8,8 @@ export const Wrapper = styled.div`
   border: 1px solid lightblue;
   border-radius: 20px;
   height: 100%;
-
+  background: #1c1f26;
+  
   img {
     max-height: 250px;
     object-fit: cover;

@@ -51,7 +51,7 @@ const App = () => {
       ) : cars.length ? (
         <>
           <p>
-            Showing results for {make} {year} {type}
+            Showing results for {year} {make} {type}
           </p>
           <Grid container spacing={3}>
             {cars.map((car: CarModelType, index: number) => (
