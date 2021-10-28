@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
-
 // Components
 import { Car, Search } from "./Components";
-import { LinearProgress, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 
 // Styles
 import { Wrapper } from "./Styles/App.styles";
@@ -20,18 +18,15 @@ import {
 
 // Store
 import { useDispatch, useSelector } from "react-redux";
-import { CarsState } from "./Store/reducers/carsReducer";
-import { MakeState } from "./Store/reducers/makeReducer";
-import { YearState } from "./Store/reducers/yearReducer";
-import { TypeState } from "./Store/reducers/typeReducer";
+import { State } from "./Store/reducers/rootReducer";
+import { useEffect } from "react";
 
 const App = () => {
-  const cars = useSelector<CarsState, CarsState["cars"]>((state) => state.cars);
-  const make = useSelector<MakeState, MakeState["make"]>((state) => state.make);
-  const year = useSelector<YearState, YearState["year"]>((state) => state.year);
-  const type = useSelector<TypeState, TypeState["type"]>((state) => state.type);
-
-  const [isLoading, setIsLoading] = useState(false);
+  const cars = useSelector((state: State) => state.cars);
+  const make = useSelector((state: State) => state.make);
+  const year = useSelector((state: State) => state.year);
+  const type = useSelector((state: State) => state.type);
+  // const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -39,7 +34,6 @@ const App = () => {
     const addCars = (cars: CarModelType[]) => {
       dispatch({ type: "ADD_CARS", payload: cars });
     };
-
     if (make && year && type) {
       (async () => {
         const response = await getModelsForMakeYearType(make, year, type);
@@ -61,7 +55,7 @@ const App = () => {
         addCars(response);
       })();
     }
-  });
+  }, [make, year, type, dispatch]);
 
   return (
     <Wrapper>
@@ -73,11 +67,15 @@ const App = () => {
         <LinearProgress />
       ) : ( */}
       <Grid container spacing={3}>
-        {cars?.map((car: CarModelType, index: number) => (
-          <Grid item key={index} xs={12} sm={4}>
-            <Car car={car} />{" "}
-          </Grid>
-        ))}
+        {cars.length ? (
+          cars.map((car: CarModelType, index: number) => (
+            <Grid item key={index} xs={12} sm={4}>
+              <Car car={car} />{" "}
+            </Grid>
+          ))
+        ) : (
+          <></>
+        )}
       </Grid>
       {/* )} */}
     </Wrapper>

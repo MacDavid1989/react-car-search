@@ -5,8 +5,10 @@ import { yearReducer } from "./yearReducer";
 import { typeReducer } from "./typeReducer";
 
 export const rootReducer = combineReducers({
-  carsReducer,
-  makeReducer,
-  yearReducer,
-  typeReducer,
+  cars: carsReducer,
+  make: makeReducer,
+  year: yearReducer,
+  type: typeReducer,
 });
+
+export type State = ReturnType<typeof rootReducer>;

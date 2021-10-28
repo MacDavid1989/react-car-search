@@ -1,23 +1,14 @@
-export interface YearState {
-  year: string;
-}
-
-const initialState = {
-  year: "",
-};
+const initialState = "";
 
 type Action = {
   type: "ADD_YEAR";
-  payload: string;
+  payload?: string;
 };
 
-export const yearReducer = (
-  state: YearState = initialState,
-  action: Action
-) => {
+export const yearReducer = (state: string = initialState, action: Action) => {
   switch (action.type) {
     case "ADD_YEAR": {
-      return { year: action.payload };
+      return action.payload;
     }
     default:
       return state;

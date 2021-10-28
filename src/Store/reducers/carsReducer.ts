@@ -1,25 +1,16 @@
 import { CarModelType } from "../../Interfaces";
 
-export interface CarsState {
-  cars: CarModelType[];
-}
-
-const initialState = {
-  cars: [],
-};
+const initialState: CarModelType[] = [];
 
 type Action = {
   type: "ADD_CARS";
   payload: CarModelType[];
 };
 
-export const carsReducer = (
-  state: CarsState = initialState,
-  action: Action
-) => {
+export const carsReducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case "ADD_CARS": {
-      return { cars: action.payload };
+      return action.payload;
     }
     default:
       return state;

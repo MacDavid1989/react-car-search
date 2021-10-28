@@ -1,23 +1,14 @@
-export interface TypeState {
-  type: string;
-}
-
-const initialState = {
-  type: "",
-};
+const initialState = "";
 
 type Action = {
   type: "ADD_TYPE";
-  payload: string;
+  payload?: string;
 };
 
-export const typeReducer = (
-  state: TypeState = initialState,
-  action: Action
-) => {
+export const typeReducer = (state: string = initialState, action: Action) => {
   switch (action.type) {
     case "ADD_TYPE": {
-      return { type: action.payload };
+      return action.payload;
     }
     default:
       return state;
