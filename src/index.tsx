@@ -1,10 +1,14 @@
 import ReactDOM from "react-dom";
 import App from "./App";
+
+// Styles
 import { MuiThemeProvider } from "@material-ui/core";
 import { theme } from "./Styles/Themes/material";
+import "./Styles/index.css";
+
+// Store
 import { Provider } from "react-redux";
 import { store } from "./Store/store";
-import "./Styles/index.css";
 
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>

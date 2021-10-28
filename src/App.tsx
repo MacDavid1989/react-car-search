@@ -13,11 +13,12 @@ import { CarModelType } from "./Interfaces";
 
 // Store
 import { State } from "./Store/reducers/rootReducer";
-import { getCarData } from "./Utilities/Methods/getCarData";
 
 // Api
-import { getCarPhotos } from "./Utilities/API/Unsplash/getCarPhotos";
-import { carImageMap } from "./Utilities/Methods/carImageMap";
+import { getCarPhotos } from "./Utilities/API/";
+
+//Methods
+import { getCarData, carImageMap } from "./Utilities/Methods";
 
 const App = () => {
   // State

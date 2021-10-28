@@ -1,4 +1,4 @@
-import { CarModelType } from "../../Interfaces/CarModelType";
+import { CarModelType } from "../../../Interfaces";
 
 export const getModelsForMakeYearType = async (
   make: string,
