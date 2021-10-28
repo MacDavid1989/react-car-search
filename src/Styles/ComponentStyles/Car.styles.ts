@@ -10,6 +10,11 @@ export const Wrapper = styled.div`
   height: 100%;
   background: #1c1f26;
 
+  :hover {
+    opacity: 0.9;
+    cursor: pointer;
+  }
+
   img {
     height: 250px;
     object-fit: cover;
