@@ -5,7 +5,7 @@ import { FormEvent } from "react";
 import { Wrapper } from "../../Styles/ComponentStyles/Search.styles";
 
 // Components
-import { TextField, IconButton } from "@material-ui/core";
+import { TextField, Button } from "@material-ui/core";
 import { DirectionsCar } from "@material-ui/icons";
 
 const Search: React.FC = () => {
@@ -50,9 +50,14 @@ const Search: React.FC = () => {
             variant="outlined"
           />
         </div>
-        <IconButton color="primary" type="submit" aria-label="search-for-cars">
-          <DirectionsCar />
-        </IconButton>
+        <Button
+          color="primary"
+          variant="outlined"
+          startIcon={<DirectionsCar />}
+          type="submit"
+        >
+          Find My Car
+        </Button>
       </form>
     </Wrapper>
   );

@@ -45,7 +45,15 @@ export const Wrapper = styled.div`
     border-radius: 0.5px !important;
   }
 
+  button,
+  button:hover {
+    width: 223px;
+    border: none;
+    outline: none;
+    margin: 5px;
+  }
+
   button {
-    width: 48px;
+    background: #1c1f26;
   }
 `;

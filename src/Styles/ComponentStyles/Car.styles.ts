@@ -9,15 +9,15 @@ export const Wrapper = styled.div`
   border-radius: 20px;
   height: 100%;
   background: #1c1f26;
-  
+
   img {
-    max-height: 250px;
+    height: 250px;
     object-fit: cover;
     border-radius: 20px 20px 0 0;
   }
 
   div {
     padding: 1rem;
-    height: 100%;
+    height: 160px;
   }
 `;
