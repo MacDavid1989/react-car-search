@@ -1,8 +1,6 @@
-import { useEffect } from "react";
+import { lazy, useEffect, Suspense, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-// Components
-import { Car, Search, Loading } from "./Components";
 import { Grid } from "@material-ui/core";
 
 // Styles
@@ -19,6 +17,10 @@ import { getCarPhotos } from "./Utilities/API/";
 
 //Methods
 import { getCarData, carImageMap } from "./Utilities/Methods";
+
+// Components
+import { Search, Loading } from "./Components";
+const Car = lazy(() => import("./Components/Car/Car"));
 
 const App = () => {
   // State
@@ -49,6 +51,22 @@ const App = () => {
     })();
   }, [make, year, type, dispatch]);
 
+  const [showButton, setShowButton] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > 300) {
+        setShowButton(true);
+      } else {
+        setShowButton(false);
+      }
+    });
+  });
+
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <Wrapper>
       <h1>
@@ -65,13 +83,21 @@ const App = () => {
           <Grid container spacing={3}>
             {cars.map((car: CarModelType, index: number) => (
               <Grid item key={index} xs={12} sm={4}>
-                <Car car={car} />
+                <Suspense fallback={<Loading />}>
+                  <Car car={car} />
+                </Suspense>
               </Grid>
             ))}
           </Grid>
         </>
       ) : (
         <p>No Vehicle Data</p>
+      )}
+
+      {showButton && (
+        <button onClick={scrollToTop} className="back-to-top">
+          &#8679;
+        </button>
       )}
     </Wrapper>
   );
