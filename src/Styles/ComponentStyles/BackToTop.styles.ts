@@ -8,14 +8,17 @@ export const Wrapper = styled.div`
     height: 75px;
     width: 75px;
     font-size: 54px;
-    background: #65b82d;
+    background: #95c93d;
     color: #fff;
     cursor: pointer;
     border-radius: 100%;
     border: 1px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .back-to-top:hover {
-    background: #95c93d;
+    background: #65b82d;
   }
 `;

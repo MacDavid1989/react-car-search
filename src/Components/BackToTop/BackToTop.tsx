@@ -1,6 +1,10 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+// Components
+import { ArrowUpwardRounded } from "@material-ui/icons";
+import { IconButton } from "@material-ui/core";
+
 // Store
 import { State } from "../../Store/reducers/rootReducer";
 
@@ -27,9 +31,12 @@ const BackToTop: React.FC = () => {
   return (
     <Wrapper>
       {showButton && (
-        <button onClick={scrollToTop} className="back-to-top">
-          &#8679;
-        </button>
+        <IconButton onClick={scrollToTop} className="back-to-top">
+          <ArrowUpwardRounded
+            color="primary"
+            fontSize="inherit"
+          ></ArrowUpwardRounded>
+        </IconButton>
       )}
     </Wrapper>
   );
