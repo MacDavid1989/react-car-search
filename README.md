@@ -1,6 +1,6 @@
 # React Car Search App
 
-The project is deployed on netlify an can be viewed here: https://react-car-search-app.netlify.app/
+The project is deployed on netlify an can be viewed here: https://reactdrive.netlify.app/
 
 If viewing the project form a local server, download the files and run npm i before starting
 
