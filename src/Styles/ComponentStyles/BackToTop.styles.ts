@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   .back-to-top {
     position: fixed;
-    bottom: 20px;
+    bottom: 40px;
     right: 40px;
     height: 60px;
     width: 60px;
