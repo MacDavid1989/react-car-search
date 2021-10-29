@@ -9,6 +9,7 @@ export const Wrapper = styled.div`
   border-radius: 20px;
   height: 100%;
   background: #1c1f26;
+  box-shadow: 3px 3px 5px rgba(173,216,230,0.3);
 
   :hover {
     opacity: 0.9;
