@@ -2,7 +2,7 @@
 
 The project is deployed on netlify an can be viewed here: https://reactdrive.netlify.app/
 
-If viewing the project form a local server, download the files and run npm i before starting
+If viewing the project form a local server, download the files and run npm i before npm start
 
 ## How To Use
 
